@@ -1,0 +1,4 @@
+--abc-max 6
+--style-measure 80
+--max-violations 0
+--gte coverage/covered_percent,100
