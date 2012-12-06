@@ -45,3 +45,8 @@ end
 # DELETE :prefix/ - log out
 # DELETE :prefix/:identity - log another user out, iff the current user can_terminate_sessions?
 ```
+
+# Authors
+
+Code by Daniel Heath
+Protocol by Clifford Heath
