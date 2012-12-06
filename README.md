@@ -7,15 +7,15 @@ Code samples
 ```ruby
 # Accessing a protected page in the main app:
 unless session[:user]
-  client = Scissors::Client.new(:shared_key => 'secret', :uri => 'https://auth.myapp.net/prefix')
+  client = Scissors::Client.new(:app_name, 'secret_key', 'https://auth.myapp.net/prefix')net/prefix')
   redirect_to client.authentication_url( :arbitrary_data => request.url ) # Keep it small enough to fit in a URL.
 end
 
 # Handler for the login url in the main app (the login url clients are redirected to by the authentication provider app)
-client = Scissors::Client.new(:shared_key => 'secret', :uri => 'https://auth.myapp.net/prefix')
+client = Scissors::Client.new(:app_name, 'secret_key', 'https://auth.myapp.net/prefix')
 signed_token = client.extract_url_param(params[:signed_token])
-session[:user] = signed_token.user
-redirect_to signed_token.appdata[:arbitrary_data]
+session[:user] = signed_token['user']
+redirect_to signed_token['appdata'][:arbitrary_data]
 
 # The authentication app code
 app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
