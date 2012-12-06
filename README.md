@@ -3,6 +3,8 @@ SSO for apps that trust each other
 
 Pre-alpha.
 
+![Build Status](https://travis-ci.org/DanielHeath/scissors.png)
+
 Code samples
 ```ruby
 # Accessing a protected page in the main app:
