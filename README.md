@@ -48,5 +48,6 @@ end
 
 # Authors
 
-Code by Daniel Heath
-Protocol by Clifford Heath
+Code by [Daniel Heath](https://github.com/danielheath/)
+
+Protocol by [Clifford Heath](https://github.com/cjheath/)
