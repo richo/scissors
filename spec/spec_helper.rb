@@ -1,7 +1,7 @@
 require 'simplecov'
 require File.expand_path('../support/simplecov_quality_formatter', __FILE__)
 require 'rspec/autorun'
-
+require 'ostruct'
 coverage_file = File.expand_path("../coverage/covered_percent", __FILE__)
 File.unlink(coverage_file) if File.exists?(coverage_file)
 SimpleCov.formatter = SimpleCov::Formatter::QualityFormatter

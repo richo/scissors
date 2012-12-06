@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'scissors/encryption'
-require 'ostruct'
 
 describe Scissors::Encryption do
 
