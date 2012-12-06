@@ -19,7 +19,7 @@ redirect_to signed_token['appdata'][:arbitrary_data]
 
 # The authentication app code
 app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
-  prefix '/shared_auth/session'
+  app.prefix = '/shared_auth/session'
 
   # Specify the model object to run authentication against.
   # authenticable_model must implement the following:
@@ -32,10 +32,9 @@ app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
   # #allowed_to_use?(app)
   # #serialize_for_app(app)
   # #can_terminate_sessions? # If you wish to allow one user to terminate another users session (banning misbehaving users, etc)
-  authenticable_model User
+  app.authenticable_model = User
 
-  authenticates_for(:myapp, :shared_key => 'secret', :login_url => 'https://myapp.net/login?signed_token=%s', :logoff_url => 'https://myapp.net/logoff?signed_token=%s')
-
+  app.authenticates_for(:myapp, :shared_key => 'secret', :login_url => 'https://myapp.net/login?signed_token=%s', :logoff_url => 'https://myapp.net/logoff?signed_token=%s')
 end
 
 # App is a rack middleware, mounted at a given prefix.
