@@ -9,7 +9,7 @@ Code samples
 ```ruby
 # Accessing a protected page in the main app:
 unless session[:user]
-  client = Scissors::Client.new(:app_name, 'secret_key', 'https://auth.myapp.net/prefix')net/prefix')
+  client = Scissors::Client.new(:app_name, 'secret_key', 'https://auth.myapp.net/prefix')
   redirect_to client.authentication_url( :arbitrary_data => request.url ) # Keep it small enough to fit in a URL.
 end
 
@@ -21,7 +21,6 @@ redirect_to signed_token['appdata'][:arbitrary_data]
 
 # The authentication app code
 app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
-  app.prefix = '/shared_auth/session'
 
   # Specify the model object to run authentication against.
   # authenticable_model must implement the following:
@@ -38,6 +37,14 @@ app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
 
   app.authenticates_for(:myapp, :shared_key => 'secret', :login_url => 'https://myapp.net/login?signed_token=%s', :logoff_url => 'https://myapp.net/logoff?signed_token=%s')
 end
+
+map '/shared_auth/session' do
+  app = Scissors::Rack.new do |app|
+    app.prefix 'prefix'
+  end
+  run app
+end
+
 
 # App is a rack middleware, mounted at a given prefix.
 # It exposes the following routes:
