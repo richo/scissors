@@ -9,8 +9,8 @@ describe Scissors::Encryption do
     @subject.extend(Scissors::Encryption)
     @my_data = 'my data'
 
-    @expected_early_signature = '02daeb8ec2b228286451176fce03c9dce7c74b8f12e33e308985e2ae061db819'
-    @expected_later_signature = '2b2bac6e7d831b69f4efe3bb98b3cf24e2cc437630ab65fd24d149d118920881'
+    @expected_early_signature = "\xCBo8\x80\xE1e\xA0\xF4?\xDC\x1E@\xD50\xA9(2\xD5F\xAD\xC7J\x06\xED\xA09\xD0\x8F\xDD$m\xA2"
+    @expected_later_signature = "4Ai\x89\x95\xEB~\x84\x16\x7F\x9E\x92\x8Bm\x89M8\xBD8\xFD\xF5\xCB\x05Q~;`C\xFF\xD1\x81#"
   end
 
   describe 'signing arbitrary data' do

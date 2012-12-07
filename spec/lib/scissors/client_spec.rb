@@ -9,7 +9,7 @@ describe Scissors::Client do
 
   describe 'authentication_url' do
     it 'signs the request id' do
-      signature = '25fd609024b5235da4efb5c220e53f4ff186b0ea6df727b9d75612c80d27db3a'
+      signature = '%5DW%FDqEOKl%A8BZ%C1%FE1%FF%09%E6L3v%06%80%93%DE%C95%AB%AA%F8J+%CC'
       request = 'https%3A%2F%2Fmyapp.com%2Fauthenticated_page'
       expected_url = "https://auth.example.com?app=app+of+wonder&request=#{request}&signature=#{signature}"
       subject.authentication_url('https://myapp.com/authenticated_page').to_s.should == expected_url

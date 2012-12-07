@@ -1,4 +1,4 @@
-require 'digest/sha2'
+require 'openssl'
 require 'scissors'
 
 # Encryption/signing
@@ -16,7 +16,8 @@ module Scissors::Encryption
   end
 
   def sign_with_time(data, time)
-    Digest::SHA2.hexdigest "#{key}-#{app}-#{time.to_i}-#{data}"
+    sha = OpenSSL::Digest::Digest.new('sha256')
+    OpenSSL::HMAC.digest(sha, key, "#{app}-#{time.to_i}-#{data}")
   end
 
   def nearest_time_block
