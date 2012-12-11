@@ -1,0 +1,14 @@
+%form.login{:action => prefix, :method => "post"}
+  %fieldset
+    %label.for-text{:for => "email"}
+      Identity
+    %input#identity.text{:autofocus => "", :name => "identity", :tabindex => "1", :type => "text", :value => ""}/
+  %fieldset
+    %label.for-text{:for => "password"}
+      Password
+    %input#password.password{:name => "password", :tabindex => "2", :type => "password"}/
+  %fieldset.rememberme.options
+    %input#rememberme.checkbox{:checked => "checked", :name => "rememberme", :tabindex => "3", :type => "checkbox", :value => "1"}/
+    %label{:for => "rememberme"} Remember me
+  %fieldset.buttons
+    %input.submit{:tabindex => "4", :type => "submit", :value => "Log in »"}/

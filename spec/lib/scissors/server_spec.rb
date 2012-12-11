@@ -1,12 +1,25 @@
 require 'spec_helper'
-require 'scissors/rack'
+require 'scissors/server'
 
-describe Scissors::Rack do
+require 'rack/test'
+
+describe Scissors::Server do
+  include Rack::Test::Methods
+
+  def app
+    @subject ||= Scissors::Server.new do |app|
+      app.authenticable_model = TestAuthenticableUser
+    end
+  end
 
   describe 'when not logged in' do
 
     describe 'call with HTTP GET' do
-      it 'renders a login page'
+      it 'renders a login page' do
+        get '/'
+        last_response.should be_ok
+        last_response.body.should == 'a login form'
+      end
     end
 
     describe 'call with HTTP POST' do

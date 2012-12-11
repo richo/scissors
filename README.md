@@ -20,16 +20,16 @@ session[:user] = signed_token['user']
 redirect_to signed_token['appdata'][:arbitrary_data]
 
 # The authentication app code
-app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
+app = Scissors::Server.new do |app|  # Mount this rack app under a prefix
 
   # Specify the model object to run authentication against.
   # authenticable_model must implement the following:
   # Static methods
-  # #authenticate(identity, password)
   # #find_by_identity(identity)
   #
   # Instance methods
   # #identity
+  # #authenticate(password)
   # #allowed_to_use?(app)
   # #serialize_for_app(app)
   # #can_terminate_sessions? # If you wish to allow one user to terminate another users session (banning misbehaving users, etc)
@@ -39,7 +39,7 @@ app = Scissors::Rack.new do |app|  # Mount this rack app under a prefix
 end
 
 map '/shared_auth/session' do
-  app = Scissors::Rack.new do |app|
+  app = Scissors::Server.new do |app|
     app.prefix 'prefix'
   end
   run app
